@@ -11,6 +11,7 @@ function AddTask() {
                 name="task"
                 id="task"
                 placeholder="Reading"
+                
                 required
               />
               <label for="task">Task</label>

@@ -1,7 +1,35 @@
-function AddTask() {
+import goodImage from "../assets/good.png";
+import badImage from "../assets/bad.png";
+import { useState } from "react";
+
+function AddTask({ handleFormSubmit }) {
+
+  const [taskValue, settaskValue] = useState("");
+  const [hourValue, sethourValue] = useState("");
+  const [typeValue, settypeValue] = useState("good");
+  
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    if (name === "task") {
+      settaskValue(value);
+      // console.log(value)
+      // console.log(taskValue)
+    } else if (name === "hours") {
+      sethourValue(value);
+    } else if (name === "btnradio") {
+      settypeValue(value);
+    }
+  };
+
+  const submitForm = (event) => {
+    event.preventDefault();
+    handleFormSubmit(taskValue,hourValue,typeValue);
+  };
+
   return (
     <div className="container p-5">
-      <form onSubmit="">
+      <form onSubmit={submitForm}>
         <div className="row border border-white p-5">
           <div className="col-md-7">
             <div className="form-floating mb-3">
@@ -10,8 +38,9 @@ function AddTask() {
                 className="form-control"
                 name="task"
                 id="task"
-                placeholder="Reading"
-                
+                placeholder=""
+                value={taskValue}
+                onChange={handleChange}
                 required
               />
               <label for="task">Task</label>
@@ -24,7 +53,9 @@ function AddTask() {
                 className="form-control"
                 name="hours"
                 id="hours"
-                placeholder="Reading"
+                onChange={handleChange}
+                placeholder=""
+                value={hourValue}
                 required
               />
               <label for="hours">Hours</label>
@@ -34,6 +65,7 @@ function AddTask() {
             <div
               className="btn-group"
               role="group"
+              required
               aria-label="Basic radio toggle button group"
             >
               <input
@@ -42,11 +74,14 @@ function AddTask() {
                 name="btnradio"
                 id="good"
                 value="good"
-                autocomplete="off"
-                checked
+                onChange={handleChange}
+                checked = {typeValue === "good"}
               />
               <label className="btn btn-outline-primary" for="good">
-                Good
+                <img
+                  src={goodImage}
+                  style={{ width: "30px", height: "30px" }}
+                />
               </label>
 
               <input
@@ -55,10 +90,13 @@ function AddTask() {
                 name="btnradio"
                 id="bad"
                 value="bad"
-                autocomplete="off"
+                onChange={handleChange}
+                checked = {typeValue === "bad"}
+                
+               
               />
               <label className="btn btn-outline-primary" for="bad">
-                Bad
+                <img src={badImage} style={{ width: "30px", height: "30px" }} />
               </label>
             </div>
           </div>

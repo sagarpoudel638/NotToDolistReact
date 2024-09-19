@@ -1,16 +1,24 @@
-function GoodBadList() {
+import ListComponent from "./ListComponent";
+
+function GoodBadList({goodBadlist}) {
+console.log(goodBadlist)
+
+
   return (
     <div className="container mt-4">
     <div className="row">
       <div className="col text-center mb-4">
         <div className="row">
-          <h2>Entry List</h2>
+          <h2>Good List</h2>
           <hr />
         </div>
         <div className="row">
           <table className="table table-hover">
             <tbody id="goodlist">
-              
+            {goodBadlist.map((item, index) => {
+                    return <ListComponent key={index} taskItem={item} />;
+                })}
+                
             </tbody>
           </table>
         </div>

@@ -3,36 +3,20 @@ import GoodBadList from "./GoodBadList";
 import TitleContainer from "./TitleContainer";
 import { uid } from "uid";
 import React, { useState } from 'react';
-const { Toast } = bootstrap
+
+// const { Toast } = bootstrap
 function Wrapper() {
-
-  let taskList = [];
-const WEEKLYHOUR = 7*24;
-
-// function showToast() {
-//   const toastEl = document.getElementById('taskLimitToast');
-//   const toast = new bootstrap.Toast(toastEl); 
-//   toast.show(); 
-// }
-const addTask = (task,hour,type) => {
-  const id = uid();
-  const taskObj = {
-    id,
-    task,
-    hour,
-    type,
-  };
-  if (WEEKLYHOUR >= (parseInt(getTotalHours()))+hour){
-    taskList.push(taskObj);
-    displayList();
-    myForm.reset();
-    }
-    else{
-      //showToast();
-      console.log("weekly Hour exceeded")
-    }
-};
-
+  let [taskList, settaskList] = useState([
+    
+  ]);
+  const handleFormSubmit = ( taskValue, hourValue,typeValue) => {
+    
+    let tempTask = [...taskList];
+    let id = uid();
+    console.log(id)
+    tempTask.push({id, taskValue, hourValue, typeValue});
+    settaskList(tempTask);
+  }
     return(
   <div style={{
     "height": "100vh",
@@ -40,8 +24,8 @@ const addTask = (task,hour,type) => {
   }}
 >
     <TitleContainer/>
-    <AddTask />
-    <GoodBadList/>
+    <AddTask  handleFormSubmit={handleFormSubmit}/>
+    <GoodBadList goodBadlist ={taskList}/>
   </div>
     )
 }

@@ -5,7 +5,9 @@ export default function ListComponent(props) {
 //   console.log(props.hour)
   return (
     <tr>
-      <td>{props.taskItem.task}</td>
+      <td>{props.index}</td>
+      <td>{props.taskItem.taskValue}</td>
+      <td>{props.taskItem.hourValue}</td>
       <td></td>
       <td>
         <button

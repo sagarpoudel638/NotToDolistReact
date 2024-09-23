@@ -1,8 +1,7 @@
 import ListComponent from "./ListComponent";
 
-function GoodBadList({goodBadlist}) {
-console.log(goodBadlist)
-
+function GoodBadList({goodBadlist, deleteTask}) {
+// console.log(goodBadlist)
 
   return (
     <div className="container mt-4">
@@ -15,9 +14,11 @@ console.log(goodBadlist)
         <div className="row">
           <table className="table table-hover">
             <tbody id="goodlist">
-            {goodBadlist.map((item, index) => {
-                    return <ListComponent key={index} taskItem={item} />;
-                })}
+            {
+            goodBadlist.map((item,index) => {
+              if (item.typeValue === "good"){
+                    return <ListComponent key = {index} index = {index + 1} taskItem={item}  deleteTask= {deleteTask}/>;
+                }})}
                 
             </tbody>
           </table>
@@ -31,7 +32,13 @@ console.log(goodBadlist)
         <div className="row">
           <table className="table table-hover">
             <tbody id="badlist">
-              
+            {
+            goodBadlist.map((item,index) => {
+              if (item.typeValue === "bad"){
+                
+                    return <ListComponent key = {index} index = {index + 1} taskItem={item} />;
+                }})}
+                
             </tbody>
           </table>
         </div>

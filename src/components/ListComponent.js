@@ -1,19 +1,32 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-export default function ListComponent(props) {
+export default function ListComponent({index,taskItem,deleteTask}) {
 //   console.log(props);
 //   console.log(props.hour)
+
+const HandleDeleteButton = () => {
+  
+//  let id = taskItem.id;
+//  console.log(id)
+//  if (deleteTask(id)){
+//   console.log("deleted")
+//  }
+//  else{console.log("smth wrong")}
+
+
+
+}
   return (
     <tr>
-      <td>{props.index}</td>
-      <td>{props.taskItem.taskValue}</td>
-      <td>{props.taskItem.hourValue}</td>
+      <td>{index}</td>
+      <td>{taskItem.taskValue}</td>
+      <td>{taskItem.hourValue}</td>
       <td></td>
       <td>
         <button
           type="button"
           className="btn btn-danger"
-        //   onclick="deleteTask('${item.id}')"
+        onClick ={HandleDeleteButton()}
         >
           <FontAwesomeIcon icon="fa-solid fa-trash" />
         </button>

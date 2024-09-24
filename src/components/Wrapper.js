@@ -6,22 +6,24 @@ import React, { useState } from 'react';
 
 // const { Toast } = bootstrap
 function Wrapper() {
-  let id = uid();
+  
   let [taskList, settaskList] = useState([
     
   ]);
   const handleFormSubmit = ( taskValue, hourValue,typeValue) => {
     
     let tempTask = [...taskList];
-    
+    let id = uid();
     console.log(id)
     tempTask.push({id, taskValue, hourValue, typeValue});
+    console.log("Updated Task List:", tempTask); // Check here
     settaskList(tempTask);
   }
- const deleteTask= (id)=>{
-  taskList = taskList.filter((task) => {
-    return task.id !== id;
- })}
+  const deleteTask = (id) => {
+    const filteredTasks = taskList.filter((task) => task.id !== id);
+    settaskList(filteredTasks); 
+  };
+
 
     return(
   <div style={{

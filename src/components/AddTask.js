@@ -24,7 +24,9 @@ function AddTask({ handleFormSubmit }) {
 
   const submitForm = (event) => {
     event.preventDefault();
-    handleFormSubmit(taskValue,hourValue,typeValue);
+    console.log("Submitted Values:", taskValue, hourValue, typeValue);
+    handleFormSubmit("Test Task", "2", "good");
+    
   };
 
   return (
